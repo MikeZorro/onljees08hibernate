@@ -68,4 +68,25 @@ public class BookController {
         bookDAO.delete(book);
         return "deleted";
     }
+    @RequestMapping("/book/anypublisher")
+    @ResponseBody
+    public String getAnyPublisher() {
+        List<Book> list = bookDAO.findAllWithAnyPublisher();
+        return list.toString();
+    }
+    @RequestMapping("/book/bypublisher/{publisherId}")
+    @ResponseBody
+    public String getThisPublisher(@PathVariable int publisherId) {
+        Publisher publisher = publisherDAO.findById(publisherId);
+        List <Book> list = bookDAO.findAllByPublisher(publisher);
+        return list.toString();
+    }
+    @RequestMapping("/book/byauthor/{authorid}")
+    @ResponseBody
+    public String getThisAuthor(@PathVariable long authorid) {
+        Author author = authorDAO.findById(authorid);
+        List <Book> list = bookDAO.findBooksWithAuthor(author);
+        return list.toString();
+
+    }
 }

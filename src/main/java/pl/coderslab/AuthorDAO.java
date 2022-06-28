@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Repository
 @Transactional
@@ -27,5 +28,10 @@ public class AuthorDAO {
     public void delete(Author author) {
         entityManager.remove(entityManager.contains(author) ?
                 author : entityManager.merge(author));
+    }
+    public List<Author> getAll(){
+        return entityManager
+                .createQuery("select a from Author a")
+                .getResultList();
     }
 }

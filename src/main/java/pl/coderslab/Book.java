@@ -33,7 +33,6 @@ public class Book {
                 ", title='" + title + '\'' +
                 ", rating=" + rating +
                 ", description='" + description + '\'' +
-                ", authorList=" + authorList +
                 ", publisher=" + publisher +
                 '}';
     }
